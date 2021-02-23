@@ -4,6 +4,9 @@ const ctx = canvas.getContext('2d');
 //Grid size/tile count
 gs=tc=20;
 
+// frames per second 
+fps = 60;
+
 // Player statistics
 const player = {
   w: 40,
@@ -17,15 +20,15 @@ const player = {
 
 //Main game 
 function update() {
-  clear();
-
-  drawPlayer();
-
-  requestAnimationFrame(update);
+  setTimeout(function(){
+    clear();
+    drawPlayer();
+    requestAnimationFrame(update);
+  },1000/fps)
 }
 update();
 
-
+// game functions
 function clear() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
@@ -58,6 +61,7 @@ function detectWalls() {
 }
 
 function keyDown(e) {
+  
   if (e.key === 'ArrowRight' || e.key === 'Right') {
     player.x = player.x + player.speed;
   } else if (e.key === 'ArrowLeft' || e.key === 'Left') {
